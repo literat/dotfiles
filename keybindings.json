@@ -1,0 +1,36 @@
+// these are my custom vscode shortcuts
+[
+  {
+    "key": "ctrl+cmd+j",
+    "command": "editor.action.joinLines",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+j",
+    "command": "-editor.action.joinLines",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "-editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "workbench.files.action.showActiveFileInExplorer"
+  },
+  {
+    "key": "cmd+down",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+up",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus",
+  },
+  {
+    "key": "ctrl+shift+alt+cmd+0",
+    "command": "workbench.action.terminal.focus"
+  },
+]
