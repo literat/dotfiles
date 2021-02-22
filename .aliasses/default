@@ -1,0 +1,12 @@
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+
+alias c="composer"
+alias mc="mc --nosubshell"
+
+alias grc="git rebase --continue"
+alias gs="git stash"
+alias gsa="git stash apply"
+alias bfg="java -jar ~/.local/share/bfg/bfg.jar"
+alias grpo="git remote prune origin"
+alias glpb="git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
