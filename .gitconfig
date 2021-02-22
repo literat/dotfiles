@@ -1,0 +1,20 @@
+[user]
+	name = literat
+	email = tomas@litera.me
+[credential]
+	helper = osxkeychain
+[alias]
+#	cif = commit --fixup=HEAD
+	rbi = rebase -i --autosquash
+	cif = "!git commit --fixup=`~/.bin/git-log-vgrep-most-recent-commit 'fixup!'`"
+	rbc = rebase --continue
+	s = stash
+	sa = stash apply
+[core]
+	excludesfile = /Users/literat/.gitignore
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
+[pager]
+	branch = false
