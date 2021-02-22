@@ -1,0 +1,37 @@
+{
+    "title": "Windows",
+    "rules": [
+        {
+            "description": "Literat: Windows keyboard",
+            "manipulators": [
+            	{
+                    "from": {
+                        "key_code": "non_us_backslash"
+                    },
+                    "to": [
+                        {
+                            "key_code": "semicolon",
+                            "modifiers": [
+                                "right_option"
+                            ]
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "device_if",
+                            "identifiers": [
+                                {
+                                    "vendor_id": 1452,
+                                    "product_id": 630,
+                                    "description": "internal_macbook_keyboard"
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "basic"
+                }
+
+            ]
+        }
+    ]
+}
