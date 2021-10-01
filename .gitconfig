@@ -1,20 +1,203 @@
 [user]
 	name = literat
 	email = tomas@litera.me
+	signingkey = ***
+
+[init]
+	defaultBranch = main
+
+[core]
+	whitespace = fix,-indent-with-non-tab,space-before-tab,trailing-space,cr-at-eol
+	autocrlf = input
+	filemode = false
+	excludesfile = ~/.gitignore_global
+	editor = vim
+	attributesfile = ~/.gitattributes
+	pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+
+[pager]
+	log = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+	show = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+	diff = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+	branch = false
+
 [credential]
 	helper = osxkeychain
-[alias]
-#	cif = commit --fixup=HEAD
-	rbi = rebase -i --autosquash
-	cif = "!git commit --fixup=`~/.bin/git-log-vgrep-most-recent-commit 'fixup!'`"
-	rbc = rebase --continue
-	s = stash
-	sa = stash apply
-[core]
-	excludesfile = /Users/literat/.gitignore
+
+[branch]
+	autosetuprebase = always
+
+[diff]
+	algorithm = histogram
+	mnemonicprefix = true
+	renames = copies
+	compactionHeuristic = true
+	# indentHeuristic = true # default from 2.18m
+	renameLimit = 33554432
+	noprefix = true
+
+[push]
+	default = current
+
+[pull]
+	rebase = true
+	ff = only
+
+[fetch]
+	prune = true
+
+[advice]
+	statusHints = false
+	pushNonFastForward = false
+
+[pack]
+	writeReverseIndex = true
+
+[remote]
+	pushdefault = origin
+
+[interactive]
+	diffFilter = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight
+
 [gpg]
 	program = gpg
+
 [commit]
 	gpgsign = true
-[pager]
-	branch = false
+
+[status]
+	showStash = true
+
+[rebase]
+	missingCommitsCheck = warn
+	abbreviateCommands = true
+
+[merge]
+	ff = false
+
+[log]
+	decorate = true
+	date = iso
+
+[pretty]
+	custom-log-oneline = "format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(magenta)(%G?: %GS)%Creset"
+
+[alias]
+	co = checkout
+	cp = cherry-pick
+	st = status
+	ap = add -p
+	ci = commit
+	cif = "!git commit --fixup=`~/.bin/git-log-vgrep-most-recent-commit 'fixup!'`"
+	qci = commit
+	cia = commit --amend
+	rb = rebase
+	rbi = rebase -i --autosquash
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbs = rebase --skip
+	br = branch -vv
+	b = branch -vv
+	d = diff
+	dc = diff --cached
+	dw = diff --word-diff
+	mb = merge --no-ff
+	ff = merge --ff-only
+	stage = add
+	s = stash
+	sa = stash apply
+	unstage = reset HEAD --
+
+	f = fetch --all --prune
+	fpush = push --force-with-lease
+
+	l =  log --graph --pretty=custom-log-oneline --abbrev-commit --date=relative
+	ls = "l --stat -m"
+	lp = "l -p"
+	lw = "l -p --color-words"
+	h = !git --no-pager log --abbrev-commit --pretty=oneline upstream/master..HEAD
+
+	assume-unchanged = "update-index --assume-unchanged"
+	assume-changed = "update-index --no-assume-unchanged"
+
+	up = "!git stash && git fetch && git pull upstream"
+	pu = "up && git push upstream master"
+
+	k = !gitk
+	start = !git init && git commit --allow-empty -m "Initial commit"
+	wip = !git add --all && git commit -m 'WIP [ci skip]'
+	unwip = reset HEAD~1
+	cif = !git commit --fixup=$(git-log-vgrep-most-recent-commit 'fixup!')
+	cifi = !git-commit-fixup-ask
+
+	find = !sh -c 'git ls-tree -r --name-only HEAD | grep --color $1' -
+	cleanup = !git fetch --all --prune && git branch --merged master | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d
+	cf = show --pretty="format:" --name-only
+	permission-reset = "!git diff -p | grep -E '^(diff|old mode|new mode)' | sed -e 's/^old/NEW/;s/^new/old/;s/^NEW/new/' | git apply"
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	sh = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red
+	new = green
+	whitespace = red reverse
+
+[color "status"]
+	added = green
+	changed = red
+	untracked = cyan
+
+[color "sh"]
+	branch = yellow
+
+[cola]
+	spellcheck = false
+
+[diff "lisp"]
+	xfuncname = "^(\\(.*)$"
+#	xfuncname = "^(\\((cl-)?def(un|macro|method).*)$"
+[diff "rstats"]
+	xfuncname = "^([a-zA-z.]+ <- function.*)$"
+[diff "texinfo"]
+	# from http://git.savannah.gnu.org/gitweb/?p=coreutils.git;a=blob;f=.gitattributes;h=c3b2926c78c939d94358cc63d051a70d38cfea5d;hb=HEAD
+	xfuncname = "^@node[ \t][ \t]*\\([^,][^,]*\\)"
+[diff "orgmode"]
+	xfuncname = "^(\\*+.*)$"
+#[diff "css"]
+#	xfuncname = "^([a-zA-Z#.@][^\\}]*)$"
+#	xfuncname = "^(.*\\{)$"
+[diff "rust"] # Thanks to csabahenk
+	xfuncname = "^[ \t]*(pub|)[ \t]*((fn|struct|enum|impl|trait|mod)[^;]*)$"
+[diff "exif"]
+	binary = true
+	# sudo apt-get install libimage-exiftool-perl
+	textconv = exiftool
+[diff "phpf"]
+	xfuncname = "^[\t ]*(((public|protected|private|static)[\t ]+)*function.*)$\n"
+
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+	insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+	insteadOf = "gst:"
+	pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+	insteadOf = "gist:"
