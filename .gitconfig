@@ -2,6 +2,7 @@
 	name = literat
 	email = tomas@litera.me
 	signingkey = ***
+	useconfigonly = true
 
 [init]
 	defaultBranch = main
@@ -134,6 +135,9 @@
 	cleanup = !git fetch --all --prune && git branch --merged master | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d
 	cf = show --pretty="format:" --name-only
 	permission-reset = "!git diff -p | grep -E '^(diff|old mode|new mode)' | sed -e 's/^old/NEW/;s/^new/old/;s/^NEW/new/' | git apply"
+
+	setup-personal = !git config user.name 'literat' && git config user.email 'tomas@litera.me' && git config commit.gpgsign true
+	setup-lmc = !git config user.name 'Tomáš Litera' && git config user.email 'tomas.litera@lmc.eu' && git config commit.gpgsign true && git config user.signingkey ***
 
 [color]
 	branch = auto
