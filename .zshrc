@@ -1,10 +1,62 @@
+# ~/.zshrc
+
+# zstyle ':znap:*' ~/.zsh-plugins/.zsh-plugins
+
+[[ -r ~/Work/znap/znap.zsh ]] ||
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/Work/znap
+source ~/Work/znap/znap.zsh
+
+# znap prompt sindresorhus/pure
+
+znap source zsh-completions
+znap source zsh-syntax-highlighting
+znap source zsh-async
+znap source z
+znap source zsh-colored-man-pages
+znap source zsh-abbrev-alias
+znap source fzf-tab
+
+# From Oh-my-ZSH
+# znap source oh-my-zsh lib/completion
+
+# From Prezto
+# znap source prezto
+# znap source prezto \
+#   modules/helper \
+#   modules/completion \
+#   modules/environment \
+#   modules/terminal \
+#   modules/editor \
+#   modules/history \
+#   modules/directory \
+#   modules/syntax-highlighting \
+#   modules/utility
+# fpath+=( $(znap path prezto) )
+
+# Pure prompt
+# znap source pure
+# fpath+=$(znap path pure)
+# autoload -Uz promptinit && promptinit
+# prompt pure
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+if [ -f $(brew --prefix)/etc/brew-wrap ];then
+  source $(brew --prefix)/etc/brew-wrap
+fi
+
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -56,31 +108,26 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  1password
   brew
-  cloudapp
-  dirnav
   dotenv
   extract
   git
-  osx
-  zsh-autosuggestions
+  macos
   brew
   composer
   docker
   gitfast
   git-extras
-  git-flow
+  # git-flow
   jira
   node
   npm
-  sublime
   symfony2
   tig
   yarn
   z
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-  ssh-agent
+  zsh-nvm-auto-switch
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -103,7 +150,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -111,7 +158,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # For a full list o:w
 #
 # export PATH="$(brew --prefix homebrew/php/php72)/bin:$PATH"
-export MC_SKIN=/Users/literat/.mc/lib/solarized.ini
+# export MC_SKIN=/Users/literat/.mc/solarized.ini
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -124,7 +171,7 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 # ----------
 . ~/.aliasses/default
 . ~/.aliasses/docker
-. ~/.aliasses/lmc
+# . ~/.aliasses/lmc
 
 eval $(thefuck --alias)
 
@@ -175,3 +222,12 @@ export PATH="/Users/literat/Library/Python/3.7/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /opt/homebrew/opt/nvm/nvm.sh
+export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
+
+export HOMEBREW_BREWFILE=~/.brewfile

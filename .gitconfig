@@ -62,6 +62,7 @@
 
 [gpg]
 	program = gpg
+	format = ssh
 
 [commit]
 	gpgsign = true
@@ -128,7 +129,6 @@
 	start = !git init && git commit --allow-empty -m "Initial commit"
 	wip = !git add --all && git commit -m 'WIP [ci skip]'
 	unwip = reset HEAD~1
-	cif = !git commit --fixup=$(git-log-vgrep-most-recent-commit 'fixup!')
 	cifi = !git-commit-fixup-ask
 
 	find = !sh -c 'git ls-tree -r --name-only HEAD | grep --color $1' -
@@ -205,3 +205,8 @@
 
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
+[maintenance]
+	repo = /Users/tomas.litera/Repos/znap
+	repo = /Users/tomas.litera
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
