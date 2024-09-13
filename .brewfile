@@ -1,0 +1,82 @@
+
+# tap repositories and their packages
+
+tap homebrew/core
+brew act
+brew brotli
+brew c-ares
+brew ca-certificates
+brew coreutils
+brew gettext
+brew git
+brew glib
+brew gmp
+brew htop
+brew icu4c
+brew jq
+brew libidn2
+brew libnghttp2
+brew libpng
+brew libssh2
+brew libunistring
+brew libuv
+brew midnight-commander
+brew mpdecimal
+brew ncurses
+brew node
+brew nvm
+brew oniguruma
+brew openssl@3
+brew pcre2
+brew pnpm
+brew powerlevel10k
+brew python@3.12
+brew readline
+brew s-lang
+brew six
+brew sqlite
+brew thefuck
+brew tig
+brew volta
+brew wget
+brew xz
+brew yarn
+
+tap homebrew/cask
+cask 1password
+cask 1password-cli
+cask dbgate
+cask docker
+cask figma
+cask font-hack-nerd-font
+cask iterm2
+cask karabiner-elements
+cask maccy
+cask meld
+cask numi
+cask orbstack
+cask postman
+cask raycast
+cask spotify
+cask visual-studio-code
+cask warp
+
+tap homebrew/cask-fonts
+
+tap rcmdnk/file
+brew brew-file
+
+tap shivammathur/php
+
+# App Store applications
+appstore 682658836 GarageBand (10.4.11)
+appstore 408981434 iMovie (10.4.1)
+appstore 409183694 Keynote (14.1)
+appstore 441258766 Magnet (2.14.0)
+appstore 1274495053 Microsoft To Do (2.128)
+appstore 1289197285 MindNode (2023.3.7)
+appstore 409203825 Numbers (14.1)
+appstore 409201541 Pages (14.1)
+appstore 803453959 Slack (4.40.128)
+appstore 425424353 The Unarchiver (4.3.8)
+appstore 310633997 WhatsApp (24.18.77)
